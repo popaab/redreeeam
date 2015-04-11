@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        // tasks: ['newer:jshint:test', 'karma']
+        tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -335,9 +335,9 @@ module.exports = function (grunt) {
       server: [
         'copy:styles'
       ],
-      // test: [
-      //   'copy:styles'
-      // ],
+      test: [
+        'copy:styles'
+      ],
       dist: [
         'copy:styles',
         'imagemin',
@@ -393,16 +393,16 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'copy:dist',
     'cdnify',
-    // 'cssmin',
-    // 'uglify',
+    'cssmin',
+    'uglify',
     'filerev',
     'usemin',
-    // 'htmlmin'
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
-    // 'newer:jshint',
-    // 'test',
+    'newer:jshint',
+    'test',
     'build'
   ]);
 };
