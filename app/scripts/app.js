@@ -18,7 +18,6 @@ angular
     'ngMaterial',
     'ngSanitize',
     'ngTouch',
-    'ngGiphy',
     'ngTagsInput',
     'ngMaterial'
   ])

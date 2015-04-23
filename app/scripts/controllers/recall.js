@@ -62,7 +62,6 @@ angular.module('redreamApp')
 	{
 	   	$scope.items = data;
 	   	console.log(data);
-	    // http://jimhoskins.com/2012/12/17/angularjs-and-apply.html 
 	    $scope.$apply(); 
 	};
  
@@ -79,7 +78,6 @@ angular.module('redreamApp')
  
     $scope.deleteItem = function(item)
     {
-      // $('#dreamList').fadeOut('slow');
       dataStore.remove(item,getItems,errorCallback);
     }
  
@@ -100,5 +98,50 @@ angular.module('redreamApp')
     		console.log(value); 
     	}
     };
+
+
+    //script for input title
+        (function() {
+            if (!String.prototype.trim) {
+                (function() {
+                    // Make sure we trim BOM and NBSP
+                    var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                    String.prototype.trim = function() {
+                        return this.replace(rtrim, '');
+                    };
+                })();
+            }
+
+            [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+                // in case the input is already filled..
+                if( inputEl.value.trim() !== '' ) {
+                    classie.add( inputEl.parentNode, 'input--filled' );
+                }
+
+                // events:
+                inputEl.addEventListener( 'focus', onInputFocus );
+                inputEl.addEventListener( 'blur', onInputBlur );
+            } );
+
+            function onInputFocus( ev ) {
+                classie.add( ev.target.parentNode, 'input--filled' );
+            }
+
+            function onInputBlur( ev ) {
+                if( ev.target.value.trim() === '' ) {
+                    classie.remove( ev.target.parentNode, 'input--filled' );
+                }
+            }
+        })();
+
+    // For Demo purposes only (show hover effect on mobile devices)
+    [].slice.call( document.querySelectorAll('a[href="#"') ).forEach( function(el) {
+        el.addEventListener( 'click', function(ev) { ev.preventDefault(); } );
+    } );
+
+    // For Demo purposes only (show hover effect on mobile devices)
+    [].slice.call( document.querySelectorAll('a[href="#"') ).forEach( function(el) {
+        el.addEventListener( 'click', function(ev) { ev.preventDefault(); } );
+    } );
 
   });
